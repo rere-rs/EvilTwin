@@ -82,9 +82,9 @@ def init_menu_principal():
                 bssids = [line.split(';')[1] for line in contenu] #On récupère l'adresse mac des AP
                 channels = [line.split(';')[2] for line in contenu]#On récupère les channels 
                 datas = [line.split(';')[3] for line in contenu] #On récupère le nombre de data des AP
-                print(BLEU+"ESSID - "+ORANGE+"BSSID - "+VERT+"CHANNEL"+ROUGE+"DATA"+RESET)
+                print(BLEU+"ESSID - "+ORANGE+"BSSID - "+VERT+"CHANNEL - "+ROUGE+"DATA"+RESET)
                 for index,(essid,bssid,ch,data) in enumerate(zip(essids,bssids,channels,datas),start=1): #On les affiche avec enumerate() afin de garder l'index
-                    print(f"{index} : "+BLEU+f"{essid}"+RESET+" - "+ORANGE+f"{bssid}"+RESET+" - "+VERT+f"{ch}"+RESET+ROUGE+f"{data}"+RESET)
+                    print(f"{index} : "+BLEU+f"{essid}"+RESET+" - "+ORANGE+f"{bssid}"+RESET+" - "+VERT+f"{ch}"+RESET+" - "+ROUGE+f"{data}"+RESET)
                 file.close() #On ferme le fichier
                 #----------------------------------------------------------------------#
                 os.system("bash script/eviltwin.sh")
