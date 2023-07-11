@@ -1,6 +1,6 @@
 #!/bin/bash
 
-int_reseau=wlan0
+int_reseau=
 
 #----------------------------------DEMARRAGE DU ROGUE AP---------------------------------
 
