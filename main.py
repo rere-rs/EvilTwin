@@ -14,38 +14,6 @@ ORANGE = '\033[33m'
 ROUGE = '\033[31m'
 RESET = '\033[0m'
 
-def en_exec(script):
-    
-    """
-    Cette fonction permet de savoir si un script est toujours en execution.
-
-    Paramètres
-    ----------
-    script : nom du script
-
-    Renvoie
-    -------
-    Un booléen qui renvoit True si le script est toujours en execution, sinon False.
-    """
-
-    for process in psutil.process_iter(['name']): #itère sur tous les processus en cours d'exécution
-        if process.info['name'] == script:
-            return True
-    return False
-
-def barre_prog(script):
-    iterations = 100
-
-    for _ in tqdm(range(iterations), desc="Progression"):
-        # Effectuer une tâche
-        time.sleep(0.1)
-
-        # Vérifier si le script est toujours en cours d'exécution
-        if not en_exec(script):
-            print("Le script a été arrêté.")
-            return
-    print("Tâches terminées.")
-
 def affichage_init():
     
     """
