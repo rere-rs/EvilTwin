@@ -61,7 +61,11 @@ sudo systemctl restart NetworkManager
 tail -n +2 capture-ap-01.kismet.csv | awk -F ';' '{print $3, $4, $6, $14}' | tr ' ' ';' | sort -nr -k3 | tee ESSID.txt > /dev/null
 
 #1. On utilise tail pour enlever l'entete (ESSID, CHANNEL etc)
-#2. AWK permet de spécifier le délimiteur ';'. $3 : ESSID $4 : BSSID $14 : DATA  $6 : CHANNEL
+#2. AWK permet de spécifier le délimiteur ';'.
+#	$3 : ESSID 
+#	$4 : BSSID 
+# 	$6 : CHANNEL	
+#	$14 : DATA  
 #3. tr remplace les espaces dans par des ';'
 #4. sort permet de trier, décroissant, selon la 3eme colonne
 #5. Tee permet la sortie de la commande dans le fichier ESSID.txt
