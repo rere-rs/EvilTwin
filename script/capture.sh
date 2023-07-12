@@ -28,9 +28,10 @@ echo ""
 echo "Entrez votre interface réseau"
 read int_reseau
 
+#Création d'un fichier reset
 touch ../../script/reset.sh && chmod a+x ../../script/reset.sh
-echo "sed -i s/int_reseau=$int_reseau/int_reseau=/ script/eviltwin.sh" > ../../script/reset.sh 
-echo "sed -i s/int_reseau=$int_reseau/int_reseau=/ script/activation.sh" >> ../../script/reset.sh 
+echo "sed -i s/int_reseau=$int_reseau/int_reseau=/ eviltwin.sh" > ../../script/reset.sh 
+echo "sed -i s/int_reseau=$int_reseau/int_reseau=/ activation.sh" >> ../../script/reset.sh 
 
 sed -i "s/int_reseau=/int_reseau=$int_reseau/" ../../script/eviltwin.sh
 sed -i "s/int_reseau=/int_reseau=$int_reseau/" ../../script/activation.sh
@@ -66,6 +67,6 @@ tail -n +2 capture-ap-01.kismet.csv | awk -F ';' '{print $3, $4, $6, $14}' | tr 
 #	$4 : BSSID 
 # 	$6 : CHANNEL	
 #	$14 : DATA  
-#3. tr remplace les espaces dans par des ';'
+#3. tr remplace les espaces par des ';'
 #4. sort permet de trier, décroissant, selon la 3eme colonne
 #5. Tee permet la sortie de la commande dans le fichier ESSID.txt
