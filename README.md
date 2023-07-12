@@ -2,7 +2,9 @@
 
 ## Pré-requis
 
-- OS avec un gestionnaire de paquets APT et aircrack-ng
+- OS avec un gestionnaire de paquets APT
+- Aircrack-ng
+- Apache2 ou autre serveur web
 - Python 3.x
 - Carte WiFi de type Panda PAU09 ou ALFA AWUS036NEH
 
@@ -14,6 +16,12 @@ Lancer le script **install.sh**
 ```bash
 cd EvilTwin
 chmod a+x install.sh && ./install.sh
+```
+
+Mise en place d'une page de connexion afin de tester le capture de paquets :
+```bash
+sudo cp web/* /var/www/html/
+systemctl restart apache2.service
 ```
 
 ### Utilisation
