@@ -4,7 +4,6 @@ import os
 import psutil
 import time
 from simple_term_menu import TerminalMenu #librairie qui permet d'afficher un menu intéractif dans le terminal
-from tqdm import tqdm #permet d'afficher une barre de progression
 
 #Echappement ANSI
 GRAS = '\033[1m'
@@ -20,7 +19,7 @@ def affichage_init():
     Cette fonction personnalise l'affichage du programme lors du lancement.
     """
 
-    os.system("clear") #effacer le terminal
+    os.system("clear") #efface le terminal
     titre = " _____     _ _    _____       _    \n|   __|_ _|_| |  |_   _|_ _ _|_|___ \n|   __| | | | |    | | | | | | |   |\n|_____|\_/|_|_|    |_| |_____|_|_|_|\n"
     #logo = " ⢠⡾⠃⠀⠀⠀⠀⠀⠀⠰⣶⡀\n⢠⡿⠁⣴⠇⠀⠀⠀⠀⠸⣦⠈⢿⡄\n⣾⡇⢸⡏⢰⡇⠀⠀⢸⡆⢸⡆⢸⡇\n⢹⡇⠘⣧⡈⠃⢰⡆⠘⢁⣼⠁⣸⡇\n⠈⢿⣄⠘⠃⠀⢸⡇⠀⠘⠁⣰⡟\n  ⠙⠃⠀⠀⢸⡇⠀⠀⠘⠋\n      ⢸⡇\n      ⢸⡇⠘⠃"
     print(titre)
@@ -50,7 +49,7 @@ def init_menu_principal():
                 bssids = [line.split(';')[1] for line in contenu] #On récupère l'adresse mac des AP
                 channels = [line.split(';')[2] for line in contenu]#On récupère les channels 
                 datas = [line.split(';')[3] for line in contenu] #On récupère le nombre de data des AP
-                print(BLEU+"ESSID - "+ORANGE+"BSSID - "+VERT+"CHANNEL - "+ROUGE+"DATA"+RESET)
+                print(BLEU+"ESSID - "+ORANGE+"BSSID - "+VERT+"CHANNEL - "+ROUGE+"DATA"+RESET) #Affiche les legendes afin de repérer les informations
                 for index,(essid,bssid,ch,data) in enumerate(zip(essids,bssids,channels,datas),start=1): #On les affiche avec enumerate() afin de garder l'index
                     print(f"{index} : "+BLEU+f"{essid}"+RESET+" - "+ORANGE+f"{bssid}"+RESET+" - "+VERT+f"{ch}"+RESET+" - "+ROUGE+f"{data}"+RESET)
                 file.close() #On ferme le fichier
@@ -60,7 +59,7 @@ def init_menu_principal():
             else:
                 print("Le fichier n'existe pas.\n")
     elif options_menu_princpal[menu_principal] == "Handshake WEP/WPA/WPA2":
-        print("Handshake.sh loaded...")
+        print("Handshake.sh en cours de création...")
     else:
         print("Bye")
         exit(0)
@@ -77,11 +76,11 @@ def activation():
     options_menu_activation = ["Oui","Non","Quitter"]
     menu = TerminalMenu(options_menu_activation).show()
 
-    if options_menu_activation[menu] == "Oui":
+    if options_menu_activation[menu] == "Oui": #Lancement de deux terminales ainsi que tshark
         print("Lancement de HOSTAPD et DNSMASQ...\n"+VERT+"Pour arrêter, CTRL+C dans chaque terminal"+RESET)
         os.system("bash script/activation.sh")
         exit(0)
-    elif options_menu_activation[menu] == "Non":
+    elif options_menu_activation[menu] == "Non": #Revenir au menu principal
         print("\nPour lancer HOSTAPD et DNSMASQ manuellement :\n"+ROUGE+"sudo xterm -hold -e sudo dnsmasq -d -C dnsmasq.conf &\nsudo xterm -hold -e sudo hostapd hostapd.conf &"+RESET)
         init_menu_principal()
     else:
