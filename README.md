@@ -24,6 +24,8 @@ sudo cp web/* /var/www/html/
 systemctl restart apache2.service
 ```
 
+Pour tester, se connecter à l'adresse suivante http://192.168.1.254/login.html sur la machine connectée à l'AP. 
+
 ### Utilisation
 
 Avant de lancer le script, modifier le fichier suivant dans le dossier **script** : **eviltwin.sh**
