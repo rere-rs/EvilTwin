@@ -18,7 +18,7 @@ cd EvilTwin
 chmod a+x install.sh && ./install.sh
 ```
 
-Mise en place d'une page de connexion afin de tester le capture de paquets :
+Mise en place d'une page de connexion afin de tester la capture de paquets :
 ```bash
 sudo cp web/* /var/www/html/
 systemctl restart apache2.service
